@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoWattServer", "EcoWattServer\EcoWattServer.csproj", "{BC08A0A1-15AB-4E90-90C9-269D7C44ADEC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC08A0A1-15AB-4E90-90C9-269D7C44ADEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC08A0A1-15AB-4E90-90C9-269D7C44ADEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC08A0A1-15AB-4E90-90C9-269D7C44ADEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC08A0A1-15AB-4E90-90C9-269D7C44ADEC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
