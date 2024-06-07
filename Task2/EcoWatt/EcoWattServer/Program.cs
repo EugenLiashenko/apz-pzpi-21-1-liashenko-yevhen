@@ -1,5 +1,9 @@
 using System.Text;
 using BLL.Jwt;
+using BLL.Measurements;
+using BLL.Notifications;
+using BLL.Users;
+using BLL.Validation;
 using DAL.Data;
 using EcoWattServer.Migrations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -58,6 +62,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 
 builder.Services.AddCors();
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
+builder.Services.AddScoped<IPasswordService, PasswordService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<INotificationService, NotificationService>();
+builder.Services.AddScoped<IMeasurementService, MeasurementService>();
 
 var app = builder.Build();
 
@@ -69,6 +77,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllers();
 
 app.UseMiddleware<JwtConnectorMiddleware>();
 
