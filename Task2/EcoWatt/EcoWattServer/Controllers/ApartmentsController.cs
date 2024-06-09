@@ -1,6 +1,7 @@
 ﻿using BLL.Apartment;
 using Core.DTOs.Apartment;
 using Core.DTOs.Error;
+using Core.Enums;
 using EcoWattServer.Attributes;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -77,5 +78,13 @@ public class ApartmentsController : Controller
         var errorResult = result as ErrorDto;
             
         return BadRequest(errorResult.Message);
+    }
+
+    [HttpGet("status/{status}")]
+    public async Task<IActionResult> GetApartmentsByStatus(Availability status)
+    {
+        var apartments = await _apartmentsService.GetApartmentsByStatusAsync(status);
+
+        return Ok(apartments);
     }
 }

@@ -1,11 +1,14 @@
 using System.Text;
+using BLL.Apartment;
 using BLL.BackUp;
+using BLL.Bookings;
 using BLL.Jwt;
 using BLL.Measurements;
 using BLL.Notifications;
 using BLL.Statistics;
 using BLL.Users;
 using BLL.Validation;
+using Core.Entities;
 using DAL.Data;
 using EcoWattServer.Filters;
 using EcoWattServer.Migrations;
@@ -77,6 +80,8 @@ builder.Services.AddScoped<INotificationService, NotificationService>();
 builder.Services.AddScoped<IMeasurementService, MeasurementService>();
 builder.Services.AddScoped<IStatisticsService, StatisticsService>();
 builder.Services.AddScoped<IBackUpService, BackUpService>();
+builder.Services.AddScoped<IApartmentsService, ApartmentsService>();
+builder.Services.AddScoped<IBookingService, BookingService>();
 
 var app = builder.Build();
 
