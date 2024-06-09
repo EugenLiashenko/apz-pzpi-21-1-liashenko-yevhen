@@ -71,7 +71,7 @@ public class MeasurementService: IMeasurementService
         {
             Metrics = a.Metric,
             Value  = a.Value,
-            TimeSpan = a.Timestamp
+            TimeSpan = a.Timestamp,
         }).ToList();
     }
 

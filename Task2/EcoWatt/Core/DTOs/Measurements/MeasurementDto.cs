@@ -7,4 +7,6 @@ public class MeasurementDto: IModel
     public string Value { get; set; } = string.Empty;
 
     public DateTime TimeSpan { get; set; }
+    
+    public int ApartmentsId { get; set; }
 }
