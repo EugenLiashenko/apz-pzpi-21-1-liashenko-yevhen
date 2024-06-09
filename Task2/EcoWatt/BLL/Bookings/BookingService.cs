@@ -58,14 +58,27 @@ public class BookingService: IBookingService
     {
         var dbBooking = new Booking
         {
-            Apartment = booking.Apartment,
-            User = booking.User,
+            ApartmentId = booking.ApartmentId,
+            UserId = booking.UserId,
             EndingDate = booking.EndingDate,
             StartingDate = booking.StartingDate,
             TotalPrice = booking.TotalPrice,
             PriceForManagement = booking.PriceForManagement
         };
 
+        var user = await _dataContext.Users.FirstOrDefaultAsync(x => x.Id == dbBooking.UserId);
+
+        if (user.Bookings is null)
+        {
+            user.Bookings = new List<Booking>()
+            {
+                dbBooking,
+            };
+        }
+        
+        user.Bookings.Add(dbBooking);
+        
+        _dataContext.Users.Update(user);
         _dataContext.Bookings.Add(dbBooking);
         await _dataContext.SaveChangesAsync();
 
@@ -84,8 +97,8 @@ public class BookingService: IBookingService
             };
         }
 
-        dbBooking.Apartment = booking.Apartment;
-        dbBooking.User = booking.User;
+        dbBooking.ApartmentId = booking.ApartmentId;
+        dbBooking.UserId = booking.UserId;
         dbBooking.EndingDate = booking.EndingDate;
         dbBooking.StartingDate = booking.StartingDate;
         dbBooking.TotalPrice = booking.TotalPrice;

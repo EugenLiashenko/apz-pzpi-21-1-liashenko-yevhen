@@ -21,7 +21,7 @@ public class BookingController : Controller
     }
     
     [HttpGet("{bookingId}")]
-    public async Task<IActionResult> GetApartmentsById(int bookingId)
+    public async Task<IActionResult> GetBookingById(int bookingId)
     {
         var result = await _bookingService.GetBookingById(bookingId);
 
@@ -42,7 +42,7 @@ public class BookingController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateApartments([FromBody] BookingCreateOrUpdateDto bookingModel)
+    public async Task<IActionResult> CreateBooking([FromBody] BookingCreateOrUpdateDto bookingModel)
     {
         var result = await _bookingService.CreateBooking(bookingModel);
         
@@ -50,7 +50,7 @@ public class BookingController : Controller
     }
 
     [HttpPut("{bookingId}")]
-    public async Task<IActionResult> UpdateApartments(int bookingId, [FromBody] BookingCreateOrUpdateDto bookingModel)
+    public async Task<IActionResult> UpdateBooking(int bookingId, [FromBody] BookingCreateOrUpdateDto bookingModel)
     {
         var result = await _bookingService.UpdateBooking(bookingId, bookingModel);
 

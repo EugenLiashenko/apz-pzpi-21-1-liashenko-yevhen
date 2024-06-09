@@ -7,13 +7,13 @@ public class Booking
     [Key]
     public int Id { get; init; }
 
-    public User User { get; set; } = new User();
+    public int UserId { get; set; } 
 
-    public Apartments Apartment { get; set; } = new Apartments();
+    public int ApartmentId { get; set; }
 
-    public DateOnly StartingDate { get; set; }
+    public DateTime StartingDate { get; set; }
     
-    public DateOnly EndingDate { get; set; }
+    public DateTime EndingDate { get; set; }
     
     public float PriceForManagement { get; set; }
     

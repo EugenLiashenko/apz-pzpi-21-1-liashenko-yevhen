@@ -20,6 +20,6 @@ public class User
     public RoleEnum Role { get; set; }
     
     public List<Notification> Notifications { get; set; }
-    
+
     public List<Booking> Bookings { get; set; }
 }
