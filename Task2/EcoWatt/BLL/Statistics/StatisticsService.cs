@@ -15,7 +15,7 @@ public class StatisticsService: IStatisticsService
     
     public async Task<List<DayBookingsDto>> GetBookingsStartCountPerDayLastMonthAsync()
     {
-        var monthStartDate = DateOnly.FromDateTime(DateTime.Now).AddMonths(-1);
+        var monthStartDate = DateTime.Now.AddMonths(-1);
         var bookingsCountPerDay = await _dataContext.Bookings
             .Where(s => s.StartingDate >= monthStartDate)
             .GroupBy(s => s.StartingDate)
@@ -32,7 +32,7 @@ public class StatisticsService: IStatisticsService
 
     public async Task<List<DayBookingsDto>> GetBookingsEndCountPerDayLastMonthAsync()
     {
-        var lastMonthStartDate = DateOnly.FromDateTime(DateTime.Now).AddMonths(-1);
+        var lastMonthStartDate = DateTime.Now.AddMonths(-1);
         var bookingsCountPerDay = await _dataContext.Bookings
             .Where(s => s.EndingDate >= lastMonthStartDate)
             .GroupBy(s => s.EndingDate)
@@ -49,7 +49,7 @@ public class StatisticsService: IStatisticsService
 
     public async Task<int> GetBookingsLastWeekAsync()
     {
-        var lastWeekStartDate = DateOnly.FromDateTime(DateTime.Now).AddDays(-7);
+        var lastWeekStartDate = DateTime.Now.AddDays(-7);
         var bookingCount = await _dataContext.Bookings.CountAsync(s => s.StartingDate >= lastWeekStartDate);
 
         return bookingCount;
@@ -58,8 +58,8 @@ public class StatisticsService: IStatisticsService
     public async Task<double> GetAverageBookingsPerDayAsync()
     {
         var startingDate = await _dataContext.Bookings.MinAsync(s => s.StartingDate);
-        var endingDate = DateOnly.FromDateTime(DateTime.Now);
-        var totalDays = (endingDate.DayNumber - startingDate.DayNumber);
+        var endingDate = DateTime.Now.Date;
+        var totalDays = (endingDate - startingDate).TotalDays;
 
         if (totalDays <= 0)
         {
@@ -80,7 +80,7 @@ public class StatisticsService: IStatisticsService
 
     public async Task<int> GetFinishedBookingsCountAsync()
     {
-        var currentDate = DateOnly.FromDateTime(DateTime.Now);
+        var currentDate = DateTime.Now.Date;
         var finishedBookings = await _dataContext.Bookings.Select(b => b.EndingDate < currentDate)
             .ToListAsync();
 

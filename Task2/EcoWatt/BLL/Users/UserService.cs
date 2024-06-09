@@ -2,6 +2,7 @@ using BLL.Validation;
 using Core.DTOs.Users;
 using Core.Entities;
 using Core.Enums;
+using CsvHelper.Configuration.Attributes;
 using DAL.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -51,6 +52,8 @@ public class UserService: IUserService
             Email = user.Email,
             PasswordHashed = hashedPassword,
             PasswordSalt = salt,
+            Bookings = new List<Booking>(),
+            Notifications = new List<Notification>()
         });
 
         await _dataContext.SaveChangesAsync();
@@ -107,6 +110,8 @@ public class UserService: IUserService
             Email = signUpModel.Email,
             PasswordHashed = hash,
             PasswordSalt = salt,
+            Bookings = new List<Booking>(),
+            Notifications = new List<Notification>()
         };
 
         await _dataContext.Users.AddAsync(newUser);
