@@ -1,10 +1,13 @@
 using System.Text;
+using BLL.BackUp;
 using BLL.Jwt;
 using BLL.Measurements;
 using BLL.Notifications;
+using BLL.Statistics;
 using BLL.Users;
 using BLL.Validation;
 using DAL.Data;
+using EcoWattServer.Filters;
 using EcoWattServer.Migrations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +20,12 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(connectionString,  b => b.MigrationsAssembly("EcoWattServer")));
+
+//Adding Exception filter to the program
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<ExceptionFilter>();
+});
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -66,6 +75,8 @@ builder.Services.AddScoped<IPasswordService, PasswordService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<INotificationService, NotificationService>();
 builder.Services.AddScoped<IMeasurementService, MeasurementService>();
+builder.Services.AddScoped<IStatisticsService, StatisticsService>();
+builder.Services.AddScoped<IBackUpService, BackUpService>();
 
 var app = builder.Build();
 

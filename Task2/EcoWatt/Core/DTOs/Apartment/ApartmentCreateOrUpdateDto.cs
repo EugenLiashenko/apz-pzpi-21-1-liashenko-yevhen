@@ -3,7 +3,7 @@ using Core.Enums;
 
 namespace Core.DTOs.Apartment;
 
-public class ApartmentCreateOrUpdateDto
+public class ApartmentCreateOrUpdateDto: IModel
 {
     public ApartmentsType Type { get; set; }
     

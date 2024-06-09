@@ -39,6 +39,7 @@ public class MeasurementService: IMeasurementService
         await _dataContext.SaveChangesAsync();
 
         return measurementDto;
+        
     }
 
     public async Task<IModel> DeleteMeasurementAsync(int analysisId)
@@ -53,7 +54,7 @@ public class MeasurementService: IMeasurementService
             };
         }
 
-        _dataContext.Remove(analysis);
+        _dataContext.Measurements.Remove(analysis);
         await _dataContext.SaveChangesAsync();
 
         return new SuccessDto()
